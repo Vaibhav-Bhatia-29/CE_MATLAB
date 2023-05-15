@@ -1,0 +1,23 @@
+t = 0:0.001:5;
+Am = 3;
+Ac = 5;
+fm = 1;
+fc = 10;
+ct = Ac.*cos(2*pi*fc*t);
+mt = Am.*cos(2*pi*fm*t);
+st = ct.*mt;
+wt = st.*ct;
+[b,a] = butter(1,.003);
+y = filtfilt(b,a,wt);
+
+subplot(411);
+plot(t,mt,'r');
+
+subplot(412);
+plot(t,ct,'g');
+
+subplot(413);
+plot(t,st,'b');
+
+subplot(414);
+plot(t,y,"c");
